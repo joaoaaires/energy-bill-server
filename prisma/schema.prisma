@@ -1,0 +1,79 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Fatura {
+  id String @id @default(uuid())
+
+  clienteCodigo   String
+  clienteNome     String
+  clienteEndereco String
+
+  instalacaoCodigo String
+
+  vencimentoData DateTime
+  total          Int
+  accessKey      String
+
+  createAt DateTime @default(now())
+  updateAt DateTime @updatedAt
+
+  FaturaItem FaturaItem[]
+}
+
+model FaturaItem {
+  id       String @id @default(uuid())
+  faturaId String
+
+  descricao  String
+  unidade    String
+  quantidade Int
+  price      Int
+
+  createAt DateTime @default(now())
+  updateAt DateTime @updatedAt
+
+  fatura Fatura @relation(fields: [faturaId], references: [id])
+}
+
+model Bill {
+  id String @id @default(uuid())
+
+  customerCode    String
+  customerName    String
+  customerAddress String
+
+  installationCode String
+
+  dueDate   DateTime
+  total     Int
+  accessKey String
+
+  createAt DateTime @default(now())
+  updateAt DateTime @updatedAt
+
+  items BillItem[]
+}
+
+model BillItem {
+  id     String @id @default(uuid())
+  billId String
+
+  description String
+  unit        String
+  quantity    Int
+  price       Int
+
+  createAt DateTime @default(now())
+  updateAt DateTime @updatedAt
+
+  bill Bill @relation(fields: [billId], references: [id])
+}
