@@ -3,6 +3,8 @@ import { z } from 'zod'
 import { makeCreateBillUseCase } from './usecases/factories/make-create-bill-use-case'
 import { makeFindAllBillUseCase } from './usecases/factories/make-find-all-bill-use-case'
 import { makeUploadBillUseCase } from './usecases/factories/make-upload-bill-use-case'
+import { makeConvertBillUseCase } from './usecases/factories/make-convert-bill-use-case'
+import { makeSaveBillUseCase } from './usecases/factories/make-save-bill-use-case'
 
 export default async (app: FastifyInstance) => {
   app.route({
@@ -32,7 +34,7 @@ export default async (app: FastifyInstance) => {
               description: z.string(),
               unit: z.string(),
               quantity: z.number().int(),
-              price: z.number().int(),
+              total: z.number().int(),
             })
             .array(),
         })
@@ -92,7 +94,24 @@ export default async (app: FastifyInstance) => {
       const uploadBillUseCase = makeUploadBillUseCase()
       const { filePaths } = await uploadBillUseCase.execute({ uploads })
 
-      return reply.code(200).send(filePaths)
+      const convertBillUseCase = makeConvertBillUseCase()
+      const { bills } = await convertBillUseCase.execute({ filePaths })
+
+      const saveBillUseCase = makeSaveBillUseCase()
+      for await (const bill of bills) {
+        await saveBillUseCase.execute({
+          customerCode: bill.customerCode,
+          customerName: bill.customerName,
+          customerAddress: bill.customerAddress,
+          installationCode: bill.installationCode,
+          dueDate: bill.dueDate,
+          total: bill.total,
+          accessKey: bill.accessKey,
+          items: bill.items,
+        })
+      }
+
+      return reply.code(200).send(bills)
     },
   })
 }

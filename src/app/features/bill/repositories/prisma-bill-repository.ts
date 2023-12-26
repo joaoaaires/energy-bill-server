@@ -38,4 +38,25 @@ export class PrismaBillRepository implements BillRepository {
       },
     })
   }
+
+  async findByAccessKey(accessKey: string) {
+    return await prisma.bill.findFirst({
+      where: {
+        accessKey,
+      },
+    })
+  }
+
+  async update({
+    data,
+    where,
+  }: {
+    data: Prisma.BillUpdateInput
+    where: Prisma.BillWhereUniqueInput
+  }) {
+    return await prisma.bill.update({
+      where,
+      data,
+    })
+  }
 }

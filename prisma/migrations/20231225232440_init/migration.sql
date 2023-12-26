@@ -21,7 +21,7 @@ CREATE TABLE "BillItem" (
     "description" TEXT NOT NULL,
     "unit" TEXT NOT NULL,
     "quantity" INTEGER NOT NULL,
-    "price" INTEGER NOT NULL,
+    "total" INTEGER NOT NULL,
     "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updateAt" TIMESTAMP(3) NOT NULL,
 

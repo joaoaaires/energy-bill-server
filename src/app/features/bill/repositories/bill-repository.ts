@@ -8,4 +8,9 @@ export interface BillRepository {
     query?: string
     showFaturaItem?: boolean
   }): Promise<Bill[]>
+  findByAccessKey(accessKey: string): Promise<Bill | null>
+  update(params: {
+    data: Prisma.BillUpdateInput
+    where: Prisma.BillWhereUniqueInput
+  }): Promise<Bill>
 }

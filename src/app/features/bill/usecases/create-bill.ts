@@ -13,7 +13,7 @@ interface CreateBillUseCaseRequest {
     description: string
     unit: string
     quantity: number
-    price: number
+    total: number
   }[]
 }
 

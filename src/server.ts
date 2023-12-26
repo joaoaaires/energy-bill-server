@@ -3,6 +3,16 @@ import cors from '@fastify/cors'
 import autoload from '@fastify/autoload'
 import multipart from '@fastify/multipart'
 import path from 'path'
+import { existsSync, mkdirSync } from 'node:fs'
+
+try {
+  const folderName = 'uploads'
+  if (!existsSync(folderName)) {
+    mkdirSync(folderName)
+  }
+} catch (err) {
+  console.error(err)
+}
 
 const app = Fastify({
   logger: true,

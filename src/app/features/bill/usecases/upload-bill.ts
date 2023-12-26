@@ -15,7 +15,7 @@ export class UploadBillUseCase {
     uploads,
   }: UploadBillUseCaseRequest): Promise<UploadBillUseCaseResponse> {
     // if (!uploads) return reply.code(400).send({ sucess: false })
-    const filePaths = []
+    const filePaths: string[] = []
     for await (const upload of uploads) {
       const path = resolve(
         __dirname,
