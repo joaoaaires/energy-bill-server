@@ -6,6 +6,7 @@ interface CreateBillUseCaseRequest {
   customerName: string
   customerAddress: string
   installationCode: string
+  reference: string
   dueDate: Date
   total: number
   accessKey: string
@@ -33,6 +34,7 @@ export class CreateBillUseCase {
     customerName,
     customerAddress,
     installationCode,
+    reference,
     dueDate,
     total,
     accessKey,
@@ -43,6 +45,7 @@ export class CreateBillUseCase {
       customerName,
       customerAddress,
       installationCode,
+      reference,
       dueDate,
       total,
       accessKey,

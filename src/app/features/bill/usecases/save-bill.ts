@@ -6,6 +6,7 @@ interface SaveBillUseCaseRequest {
   customerName?: string
   customerAddress?: string
   installationCode?: string
+  reference?: string
   dueDate?: Date
   total?: number
   accessKey?: string
@@ -33,6 +34,7 @@ export class SaveBillUseCase {
     customerName,
     customerAddress,
     installationCode,
+    reference,
     dueDate,
     total,
     accessKey,
@@ -46,6 +48,7 @@ export class SaveBillUseCase {
         customerName: customerName || '',
         customerAddress: customerAddress || '',
         installationCode: installationCode || '',
+        reference: reference || '',
         dueDate: dueDate || new Date(),
         total: total || 0,
         accessKey: accessKey || '',

@@ -13,6 +13,7 @@ interface Bill {
   customerName?: string
   customerAddress?: string
   installationCode?: string
+  reference?: string
   dueDate?: Date
   total?: number
   accessKey?: string
@@ -107,8 +108,10 @@ export class ConvertBillUseCase {
         // DATA DE VENCIMENTO
         match = lineLocaleLowerCase.includes('vencimento')
         if (match) {
-          const dueDate = this._getDueDate(lines[index + 1])
-          if (dueDate) bill.dueDate = dueDate
+          console.log(lines[index + 1])
+          const response = this._getReferenceAndDueDate(lines[index + 1])
+          if (response) bill.reference = response.reference
+          if (response) bill.dueDate = response.due
         }
 
         // CHAVE DE ACESSO
@@ -186,7 +189,9 @@ export class ConvertBillUseCase {
     return { customerCode: values[0], installationCode: values[1] }
   }
 
-  _getDueDate(line: string): Date | null {
+  _getReferenceAndDueDate(
+    line: string,
+  ): { reference: string; due: Date } | null {
     const values = line.split(' ')
 
     if (values.length <= 1) return null
@@ -201,6 +206,6 @@ export class ConvertBillUseCase {
     const year = parseInt(match[3], 10)
 
     const data = new Date(year, month - 1, day)
-    return data
+    return { reference: values[0], due: data }
   }
 }

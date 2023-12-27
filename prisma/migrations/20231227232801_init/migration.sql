@@ -5,6 +5,7 @@ CREATE TABLE "Bill" (
     "customerName" TEXT NOT NULL,
     "customerAddress" TEXT NOT NULL,
     "installationCode" TEXT NOT NULL,
+    "reference" TEXT NOT NULL,
     "dueDate" TIMESTAMP(3) NOT NULL,
     "total" INTEGER NOT NULL,
     "accessKey" TEXT NOT NULL,

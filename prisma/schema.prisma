@@ -19,6 +19,7 @@ model Bill {
 
   installationCode String
 
+  reference String
   dueDate   DateTime
   total     Int
   accessKey String
