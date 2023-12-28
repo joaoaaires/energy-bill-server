@@ -23,6 +23,7 @@ model Bill {
   dueDate   DateTime
   total     Int
   accessKey String
+  fileName  String
 
   createAt DateTime @default(now())
   updateAt DateTime @updatedAt

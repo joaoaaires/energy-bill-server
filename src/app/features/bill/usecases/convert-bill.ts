@@ -1,4 +1,5 @@
 import { readFileSync } from 'node:fs'
+import { basename } from 'node:path'
 import PdfParse = require('pdf-parse')
 
 interface BillItem {
@@ -17,6 +18,7 @@ interface Bill {
   dueDate?: Date
   total?: number
   accessKey?: string
+  fileName?: string
   items?: BillItem[]
 }
 
@@ -47,6 +49,8 @@ export class ConvertBillUseCase {
 
       const bill: Bill = {}
       const items: BillItem[] = []
+
+      bill.fileName = basename(filePath)
 
       for (let index = 0; index < lines.length; index++) {
         const line = lines[index]
@@ -108,7 +112,6 @@ export class ConvertBillUseCase {
         // DATA DE VENCIMENTO
         match = lineLocaleLowerCase.includes('vencimento')
         if (match) {
-          console.log(lines[index + 1])
           const response = this._getReferenceAndDueDate(lines[index + 1])
           if (response) bill.reference = response.reference
           if (response) bill.dueDate = response.due

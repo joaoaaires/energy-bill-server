@@ -10,6 +10,7 @@ interface CreateBillUseCaseRequest {
   dueDate: Date
   total: number
   accessKey: string
+  fileName: string
   items: {
     description: string
     unit: string
@@ -38,6 +39,7 @@ export class CreateBillUseCase {
     dueDate,
     total,
     accessKey,
+    fileName,
     items,
   }: CreateBillUseCaseRequest): Promise<CreateBillUseCaseResponse> {
     const bill = await this.billRepository.create({
@@ -49,6 +51,7 @@ export class CreateBillUseCase {
       dueDate,
       total,
       accessKey,
+      fileName,
       items: {
         createMany: {
           data: items,

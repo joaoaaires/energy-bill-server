@@ -20,6 +20,7 @@ export default async (app: FastifyInstance) => {
         dueDate,
         total,
         accessKey,
+        fileName,
         items,
       } = z
         .object({
@@ -31,6 +32,7 @@ export default async (app: FastifyInstance) => {
           dueDate: z.string().transform((str) => new Date(str)),
           total: z.number().int(),
           accessKey: z.string(),
+          fileName: z.string(),
           items: z
             .object({
               description: z.string(),
@@ -52,6 +54,7 @@ export default async (app: FastifyInstance) => {
         dueDate,
         total,
         accessKey,
+        fileName,
         items,
       })
       return reply.code(200).send(bill)

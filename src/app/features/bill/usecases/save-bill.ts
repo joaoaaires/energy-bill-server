@@ -10,6 +10,7 @@ interface SaveBillUseCaseRequest {
   dueDate?: Date
   total?: number
   accessKey?: string
+  fileName?: string
   items?: {
     description?: string
     unit?: string
@@ -38,6 +39,7 @@ export class SaveBillUseCase {
     dueDate,
     total,
     accessKey,
+    fileName,
     items,
   }: SaveBillUseCaseRequest): Promise<SaveBillUseCaseResponse> {
     const accessKeyNotNull = accessKey || ''
@@ -52,6 +54,7 @@ export class SaveBillUseCase {
         dueDate: dueDate || new Date(),
         total: total || 0,
         accessKey: accessKey || '',
+        fileName: fileName || '',
         items: {
           createMany: {
             data:

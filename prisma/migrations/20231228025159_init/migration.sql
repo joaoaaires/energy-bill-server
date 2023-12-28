@@ -9,6 +9,7 @@ CREATE TABLE "Bill" (
     "dueDate" TIMESTAMP(3) NOT NULL,
     "total" INTEGER NOT NULL,
     "accessKey" TEXT NOT NULL,
+    "fileName" TEXT NOT NULL,
     "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updateAt" TIMESTAMP(3) NOT NULL,
 
