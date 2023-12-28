@@ -6,8 +6,7 @@
   "scripts": {
     "dev": "tsx watch src/server.ts",
     "lint": "eslint src test --ext .ts --fix",
-    "migrate": "prisma migrate dev",
-    "test": "vitest"
+    "migrate": "prisma migrate dev"
   },
   "keywords": [],
   "author": "",

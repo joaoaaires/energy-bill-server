@@ -46,10 +46,3 @@ npm run lint
 ## Contribuição
 
 Sinta-se à vontade para contribuir para o projeto. Abra uma issue para relatar bugs ou solicitar novas funcionalidades. Se desejar contribuir com código, faça um fork do repositório e abra um pull request.
-
-## Licença
-
-Este projeto está licenciado sob a [MIT License](LICENSE).
-
----
-*Este README.md é um exemplo. Substitua as seções conforme necessário para refletir as características específicas do seu projeto.*
