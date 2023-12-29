@@ -18,6 +18,10 @@ O projeto utiliza o Prisma para interagir com o banco de dados. Execute o seguin
 npm run migrate
 ```
 
+Crie um arquivo .env para conectar ao banco de dados. Segue link utilizado para acessar o banco
+
+DATABASE_URL="postgresql://postgres:123321@localhost:5432/energy?schema=public"
+
 ## Executando o Servidor em Modo de Desenvolvimento
 
 Execute o seguinte comando para iniciar o servidor em modo de desenvolvimento:
